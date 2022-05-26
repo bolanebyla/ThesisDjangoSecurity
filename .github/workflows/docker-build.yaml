@@ -24,3 +24,10 @@ jobs:
       - name: Check services status
         run: |
           ./docker_services_cheker.sh
+      - name: Install Docker Bench for Security
+        run: |
+          git clone https://github.com/docker/docker-bench-security.git
+      - name: Perform Docker Analysis
+        run: |
+          cd docker-bench-security
+          sudo sh docker-bench-security.sh
