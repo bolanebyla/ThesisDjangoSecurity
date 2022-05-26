@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sleep 10
+docker-compose ps
+
 running="$(docker-compose ps --services --filter "status=running")"
 services="$(docker-compose ps --services)"
 

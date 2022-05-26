@@ -20,5 +20,4 @@ jobs:
           docker-compose up -d
       - name: Check services status
         run: |
-          docker-compose ps
           ./docker_services_cheker.sh

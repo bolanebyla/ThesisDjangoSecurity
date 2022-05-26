@@ -12,11 +12,6 @@ services:
       - ./src/static:/usr/src/app/static
     depends_on:
       - db
-    healthcheck:
-      test: curl -sS http://localhost || echo 1
-      interval: 5s
-      timeout: 10s
-      retries: 3
 #    env_file:
 #      - ./.env
 
