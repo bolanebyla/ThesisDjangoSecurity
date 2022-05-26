@@ -2,6 +2,10 @@
 
 running="$(docker-compose ps --services --filter "status=running")"
 services="$(docker-compose ps --services)"
+
+echo "running $running"
+echo "services services"
+
 if [ "$running" != "$services" ]; then
     echo "Following services are not running:"
     # Bash specific
