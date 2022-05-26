@@ -12,6 +12,8 @@ services:
       - ./src/static:/usr/src/app/static
     depends_on:
       - db
+    environment:
+      SECRET_KEY: "${APP_SECRET_KEY}"
 #    env_file:
 #      - ./.env
 
