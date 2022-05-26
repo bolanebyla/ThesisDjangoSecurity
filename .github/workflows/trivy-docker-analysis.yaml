@@ -7,7 +7,7 @@ on:
     branches: [ '*' ]
 
 jobs:
-  trivy_docker:
+  trivy_docker_analyze:
     name: Build
     runs-on: ubuntu-latest
     steps:
