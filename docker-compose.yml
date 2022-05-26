@@ -7,7 +7,7 @@ services:
       options:
         max-size: "200M"
         max-file: "4"
-    restart: always
+    restart: "${RESTART_APP:-always}"
     volumes:
       - ./src/static:/usr/src/app/static
     depends_on:
@@ -22,7 +22,7 @@ services:
         max-size: "200M"
         max-file: "4"
     ports:
-      - 80:80
+      - 81:80
     volumes:
       - ./src/static:/usr/src/app/static
     depends_on:
