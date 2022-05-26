@@ -1,0 +1,23 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  build_docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: |
+          docker-compose build
+      - name: Run docker-compose services
+        run: |
+          docker-compose up -d
+      - name: Check services status
+        run: |
+          ./docker_services_cheker.sh
