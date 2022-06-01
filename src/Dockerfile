@@ -33,6 +33,6 @@ RUN chmod +x run.sh
 # change to the app user
 USER app
 
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["./check_db.sh"]
 
 CMD ["./run.sh"]
