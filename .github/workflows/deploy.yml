@@ -17,8 +17,7 @@ jobs:
       - name: Set global env
         id: global_env
         run: |
-          echo "::set-output name=IMAGE_NAME::thesisdjangosecurity"
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY#*/}"
+          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/thesisdjangosecurity/thesisdjangosecurity"
 
 #     Build Docker image:
       - name: Build and tag app image
@@ -29,6 +28,4 @@ jobs:
 
 #     Publish image to github package repository:
       - name: Publish app image
-        env:
-          IMAGE_NAME: $GITHUB_REPOSITORY
-        run: docker push "docker.pkg.github.com/$GITHUB_REPOSITORY/${{ steps.global_env.outputs.IMAGE_NAME }}"
+        run: docker push "docker.pkg.github.com/thesisdjangosecurity/thesisdjangosecurity"
