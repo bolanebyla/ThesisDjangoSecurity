@@ -12,6 +12,11 @@ jobs:
     env:
       RESTART_APP: no
       APP_SECRET_KEY: test
+      APP_DEBUG: False
+      APP_ALLOWED_HOSTS: test.com
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
 
     steps:
       - uses: actions/checkout@v3
