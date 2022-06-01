@@ -1,4 +1,4 @@
-domains=(thesis-django-security.bolanebyla.ru)
+domains=(test.com)
 rsa_key_size=4096
 data_path="./data/certbot"
 
@@ -8,7 +8,6 @@ curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/c
 curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem > "$data_path/conf/ssl-dhparams.pem"
 echo
 
-
 echo "### Creating dummy certificate for $domains ..."
 path="/etc/letsencrypt/live/$domains"
 mkdir -p "$data_path/conf/live/$domains"
@@ -17,8 +16,4 @@ docker-compose run --rm --entrypoint "\
     -keyout '$path/privkey.pem' \
     -out '$path/fullchain.pem' \
     -subj '/CN=localhost'" certbot
-echo
-
-echo "### Starting nginx ..."
-docker-compose up --force-recreate -d nginx
 echo
