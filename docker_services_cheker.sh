@@ -14,5 +14,6 @@ if [ "$running" != "$services" ]; then
     docker-compose logs
     exit 1
 else
+    docker-compose logs
     echo "All services are running"
 fi
