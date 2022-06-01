@@ -14,6 +14,8 @@ services:
       - db
     environment:
       SECRET_KEY: "${APP_SECRET_KEY}"
+      DEBUG: "${APP_DEBUG}"
+      ALLOWED_HOSTS: "${APP_ALLOWED_HOSTS}"
 #    env_file:
 #      - ./.env
 
