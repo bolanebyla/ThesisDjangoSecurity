@@ -1,7 +1,7 @@
 .idea/
 data/
 
-
+connect_to_thesis_django_security.bat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -107,7 +107,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+src/.env
 .venv
 env/
 venv/
