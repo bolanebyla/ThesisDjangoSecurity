@@ -18,6 +18,9 @@ jobs:
       - name: Build the Docker image
         run: |
           docker-compose build
+      - name: Init test ssl for nginx
+        run: |
+          ./init_test_ssl_for_nginx.sh
       - name: Run docker-compose services
         run: |
           docker-compose up -d
