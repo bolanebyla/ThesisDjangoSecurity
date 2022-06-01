@@ -9,6 +9,10 @@ env = environ.Env(
     DEBUG=(bool, False),
     DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
     ALLOWED_HOSTS=(list[str], ['localhost', '127.0.0.1']),
+    SECURE_SSL_REDIRECT=(bool, True),
+    SESSION_COOKIE_SECURE=(bool, True),
+    CSRF_COOKIE_SECURE=(bool, True),
+
 )
 
 # чтение .env файла
@@ -19,6 +23,12 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+
+# Security
+
+SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT')
+SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE')
+CSRF_COOKIE_SECURE = env('CSRF_COOKIE_SECURE')
 
 # Application definition
 
