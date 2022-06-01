@@ -17,16 +17,22 @@ RUN pip install --upgrade pip
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
- COPY run.sh .
+COPY run.sh .
+
+
+COPY check_db.sh .
 
 # copy project
 COPY . .
 
 EXPOSE 8080
 
+RUN chmod +x check_db.sh
 RUN chmod +x run.sh
 
 # change to the app user
 USER app
+
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
 CMD ["./run.sh"]
