@@ -28,4 +28,4 @@ jobs:
 
 #     Publish image to github package repository:
       - name: Publish app image
-        run: docker push "docker.pkg.github.com/bolanebyla/thesisdjangosecurity:${GITHUB_SHA::8}"
+        run: docker push "docker.pkg.github.com/bolanebyla/thesisdjangosecurity/thesisdjangosecurity"
