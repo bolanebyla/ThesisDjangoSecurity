@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RESTART_APP: no
+      APP_DOCKER_IMAGE: app
       APP_SECRET_KEY: test
       APP_DEBUG: False
       APP_ALLOWED_HOSTS: test.com
@@ -20,7 +21,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Build the Docker image
+      - name: Build the app Docker image
+        run: |
+          docker build -t app src/
+      - name: Build the docker-compose
         run: |
           docker-compose build
       - name: Run docker-compose services
