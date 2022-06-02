@@ -17,7 +17,7 @@ jobs:
       - name: Set global env
         id: global_env
         run: |
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/bolanebyla/thesisdjangosecurity/thesisdjangosecurity"
+          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/bolanebyla/thesisdjangosecurity/thesis_django_security_app"
 
 #     Build Docker image:
       - name: Build and tag app image
