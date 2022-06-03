@@ -35,7 +35,7 @@ RUN chmod +x run.sh
 # change to the app user
 USER app
 
-ENTRYPOINT ["python manage.py collectstatic"]
+RUN python manage.py collectstatic --noinput
 
 ENTRYPOINT ["./check_db.sh"]
 
