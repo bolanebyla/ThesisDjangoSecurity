@@ -38,7 +38,7 @@ RUN python manage.py collectstatic --noinput
 ENV SECRET_KEY=
 
 # change to the app user
-USER app
+# USER app
 
 ENTRYPOINT ["./check_db.sh"]
 
