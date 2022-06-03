@@ -10,7 +10,6 @@ jobs:
   build_docker:
     runs-on: ubuntu-latest
     env:
-      RESTART_APP: no
       APP_DOCKER_IMAGE: app
       APP_SECRET_KEY: test
       APP_DEBUG: False
