@@ -14,6 +14,8 @@ RUN apt update && apt install -y netcat
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+ENV SECRET_KEY build
+
 # install dependencies
 RUN pip install --upgrade pip
 COPY requirements.txt .
@@ -36,6 +38,7 @@ RUN chmod +x run.sh
 USER app
 
 RUN python manage.py collectstatic --noinput
+ENV SECRET_KEY=
 
 ENTRYPOINT ["./check_db.sh"]
 
