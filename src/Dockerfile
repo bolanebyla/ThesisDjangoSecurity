@@ -34,11 +34,11 @@ EXPOSE 8080
 RUN chmod +x check_db.sh
 RUN chmod +x run.sh
 
-# change to the app user
-USER app
-
 RUN python manage.py collectstatic --noinput
 ENV SECRET_KEY=
+
+# change to the app user
+USER app
 
 ENTRYPOINT ["./check_db.sh"]
 
