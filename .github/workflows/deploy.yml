@@ -28,6 +28,7 @@ jobs:
         run: docker push "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}"
 
   deploy_on_server:
+    needs: [ publish_image_to_github_package ]
     runs-on: ubuntu-latest
     env:
       APP_SECRET_KEY: ${{ secrets.APP_SECRET_KEY }}
