@@ -5,7 +5,7 @@ on:
     branches: [ 'main' ]
 
 jobs:
-  deploy:
+  publish_image_to_github_package:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -13,19 +13,41 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-#     Set global environment variables:
       - name: Set global env
         id: global_env
         run: |
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/bolanebyla/thesisdjangosecurity/thesis_django_security_app"
 
-#     Build Docker image:
       - name: Build and tag app image
         run: |
           docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" .
       - name: Docker login
         run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
 
-#     Publish image to github package repository:
       - name: Publish app image
         run: docker push "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}"
+
+  deploy_on_server:
+    runs-on: ubuntu-latest
+    env:
+      APP_SECRET_KEY: ${{ secrets.APP_SECRET_KEY }}
+      APP_DEBUG: True
+      APP_ALLOWED_HOSTS: ${{ secrets.APP_ALLOWED_HOSTS }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add ssh key and known hosts
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          ssh-host: ${{ secrets.SERVER_IP }}
+      - name: Create docker context
+        run: |
+          docker context create server --docker "host=ssh://${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}"
+          docker context use server
+          docker ps
+      - name: Run docker-compose
+        run: |
+        docker-compose --context server up -d --force-recreate
