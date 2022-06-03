@@ -50,4 +50,4 @@ jobs:
           docker ps
       - name: Run docker-compose
         run: |
-        docker-compose --context server up -d --force-recreate
+          docker-compose --context server up -d --force-recreate
