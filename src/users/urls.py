@@ -7,5 +7,5 @@ app_name = 'users'
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/auth/login.html',
                                                 redirect_authenticated_user=True), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('users:login')), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
