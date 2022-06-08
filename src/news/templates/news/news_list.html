@@ -11,6 +11,16 @@
     {% endif %}
 
     {% for news in news_list %}
-        <div>{{ news }}</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.text }}</p>
+                        <a href="#">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
