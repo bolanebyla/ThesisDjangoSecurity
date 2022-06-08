@@ -13,6 +13,14 @@
                     </a>
                 </li>
 
+                {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}">
+                            Админка
+                        </a>
+                    </li>
+                {% endif %}
+
             </ul>
             <form class="d-flex" role="search">
                 {% if user.is_authenticated %}
