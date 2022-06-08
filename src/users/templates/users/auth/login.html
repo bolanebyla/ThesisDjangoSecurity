@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 {{ form|crispy }}
                 <div>
-                    <button class="btn btn-primary ps-4 pe-4" type="submit">Вход</button>
+                    <button class="btn btn-primary ps-4 pe-4" type="submit">Войти</button>
                     <input type="hidden" name="next" value="{{ next }}"/>
                     <span class="ms-3">Нет аккаунта? <a href="{% url 'users:signup' %}">Регистрация</a></span>
                 </div>
