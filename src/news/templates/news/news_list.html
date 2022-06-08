@@ -6,5 +6,11 @@
 
 {% block content %}
     <h1>Новости</h1>
-    <p>test</p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'news:create' %}" class="btn btn-primary">Создать новость</a>
+    {% endif %}
+
+    {% for news in news_list %}
+        <div>{{ news }}</div>
+    {% endfor %}
 {% endblock %}
