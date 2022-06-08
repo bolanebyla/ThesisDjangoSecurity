@@ -44,3 +44,30 @@ class LoginTest(TestCase):
 
         self.assertIsNotNone(response.context['form'].errors)
         self.assertFalse(response.context['user'].is_authenticated)
+
+
+class SignUpTest(TestCase):
+
+    def test_accessibility(self):
+        resp = self.client.get(reverse_lazy('users:signup'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_use_correct_template(self):
+        resp = self.client.get(reverse_lazy('users:signup'))
+        self.assertTemplateUsed(resp, 'users/auth/signup.html')
+
+    def test_signup_if_correct_username_and_pass(self):
+        username = 'test_user'
+        password = '6sUiYH2mywrY444E'
+
+        credentials = {
+            'username': username,
+            'password1': password,
+            'password2': password
+        }
+        initial_users_count = User.objects.all().count()
+
+        response = self.client.post(reverse('users:signup'), credentials)
+        self.assertEqual(response.status_code, 302)
+
+        self.assertEqual(User.objects.all().count(), initial_users_count + 1)
