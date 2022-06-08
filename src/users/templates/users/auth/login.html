@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    Вход
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+        <h1>Вход</h1>
+        <form method="post" action="{% url 'users:login' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form|crispy }}
+                    <button class="btn btn-primary" type="submit">Вход</button>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </div>
+            </div>
+        </form>
+
+{% endblock %}
