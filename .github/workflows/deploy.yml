@@ -49,6 +49,9 @@ jobs:
           docker context create server --docker "host=ssh://${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}"
           docker context use server
           docker ps
+      - name: Pull new docker image
+        run: |
+          docker pull ghcr.io/bolanebyla/thesisdjangosecurity/thesis_django_security_app:latest
       - name: Run docker-compose
         run: |
           docker-compose --context server up -d --force-recreate
