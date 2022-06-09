@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    {% if object %}
+        {{ object.title }}
+    {% else %}
+        Создание новости
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+    {% if object %}
+        <h1>Редактирование новости</h1>
+    {% else %}
+        <h1>Создание новости</h1>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {{ form|crispy }}
+            <button class="btn btn-success" type="submit">Сохранить</button>
+        </div>
+    </form>
+{% endblock %}
