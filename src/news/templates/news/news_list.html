@@ -28,7 +28,7 @@
                         </div>
                         <p class="card-text">{{ news.text }}</p>
                         {% if user.is_staff or news.author == user %}
-                            <a href="#">Редактировать</a>
+                            <a href="{{ news.get_absolute_url }}">Редактировать</a>
                         {% endif %}
                     </div>
                 </div>
