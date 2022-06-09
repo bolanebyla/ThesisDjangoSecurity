@@ -14,6 +14,7 @@ def test(request):
 class NewsListView(generic.ListView):
     model = models.News
     template_name = 'news/news_list.html'
+    paginate_by = 5
 
 
 class NewsCreateView(mixins.LoginRequiredMixin, generic.CreateView):

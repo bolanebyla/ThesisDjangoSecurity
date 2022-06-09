@@ -11,28 +11,30 @@
             <a href="{% url 'news:create' %}" class="btn btn-primary">Создать новость</a>
         </div>
     {% endif %}
-
-    {% for news in news_list %}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card mt-2 mb-2">
-                    <div class="card-body">
-                        <h5 class="card-title mb-0">{{ news.title }}</h5>
-                        <div class="mb-2" style="color: gray">
-                            <small>
-                                <span>Дата публикации: {{ news.creation_date|date:'d.m.Y H:i' }}</span>
-                                {% if news.creation_date != news.update_date %}
-                                    <span>(изменено: {{ news.update_date|date:'d.m.Y H:i' }})</span>
-                                {% endif %}
-                            </small>
+    <div>
+        {% for news in news_list %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mt-2 mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">{{ news.title }}</h5>
+                            <div class="mb-2" style="color: gray">
+                                <small>
+                                    <span>Дата публикации: {{ news.creation_date|date:'d.m.Y H:i' }}</span>
+                                    {% if news.creation_date != news.update_date %}
+                                        <span>(изменено: {{ news.update_date|date:'d.m.Y H:i' }})</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <p class="card-text">{{ news.text }}</p>
+                            {% if user.is_staff or news.author == user %}
+                                <a href="{{ news.get_absolute_url }}">Редактировать</a>
+                            {% endif %}
                         </div>
-                        <p class="card-text">{{ news.text }}</p>
-                        {% if user.is_staff or news.author == user %}
-                            <a href="{{ news.get_absolute_url }}">Редактировать</a>
-                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+        {% include 'components/pagination.html' %}
+    </div>
 {% endblock %}
