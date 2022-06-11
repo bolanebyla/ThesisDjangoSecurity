@@ -19,13 +19,20 @@
                         <div class="card-body">
                             <h5 class="card-title mb-0">{{ news.title }}</h5>
                             <div class="mb-2" style="color: gray">
-                                <small>
-                                    <span>Дата публикации: {{ news.creation_date|date:'d.m.Y H:i' }}</span>
-                                    {% if news.creation_date != news.update_date %}
-                                        <span>(изменено: {{ news.update_date|date:'d.m.Y H:i' }})</span>
-                                    {% endif %}
-                                    <span>Автор: {{ user }}</span>
-                                </small>
+                                <div>
+                                    <small>
+                                        <span>Дата публикации: {{ news.creation_date|date:'d.m.Y H:i' }}</span>
+                                        {% if news.creation_date != news.update_date %}
+                                            <span>(изменено: {{ news.update_date|date:'d.m.Y H:i' }})</span>
+                                        {% endif %}
+                                        <span>Автор: {{ user }}</span>
+                                    </small>
+                                </div>
+                                <div>
+                                    <small>
+                                        <span>Автор: {{ news.author }}</span>
+                                    </small>
+                                </div>
                             </div>
                             <p class="card-text">{{ news.text }}</p>
                             {% if user.is_staff or news.author == user %}
