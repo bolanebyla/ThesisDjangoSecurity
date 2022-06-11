@@ -7,10 +7,6 @@ from django.contrib.auth import mixins
 from . import models
 
 
-def test(request):
-    return render(request, 'news/news_list.html')
-
-
 class NewsListView(generic.ListView):
     model = models.News
     template_name = 'news/news_list.html'
