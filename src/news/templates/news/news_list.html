@@ -24,6 +24,7 @@
                                     {% if news.creation_date != news.update_date %}
                                         <span>(изменено: {{ news.update_date|date:'d.m.Y H:i' }})</span>
                                     {% endif %}
+                                    <span>Автор: {{ user }}</span>
                                 </small>
                             </div>
                             <p class="card-text">{{ news.text }}</p>
